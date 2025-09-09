@@ -1,0 +1,15 @@
+{
+  "name": "dualvideoplayer",
+  "version": "1.0.0",
+  "description": "Play two videos at once",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "test"
+  },
+  "author": "Bhushan Kolhe",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^38.0.0"
+  }
+}

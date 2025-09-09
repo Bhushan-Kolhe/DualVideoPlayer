@@ -1,0 +1,17 @@
+#VideoPlayer
+{
+    width: 500px;
+    height: 500px;
+}
+
+#PrimaryVideo
+{
+    width: 100%;
+}
+
+#SecondaryVideo
+{
+    position: relative;
+    width: 50%;
+    left: 200px;
+}
