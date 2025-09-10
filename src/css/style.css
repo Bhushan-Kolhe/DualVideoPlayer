@@ -1,17 +1,213 @@
-#VideoPlayer
-{
-    width: 500px;
-    height: 500px;
-}
-
-#PrimaryVideo
+:root
 {
     width: 100%;
+    height: 100%;
 }
 
-#SecondaryVideo
+body
 {
-    position: relative;
-    width: 50%;
-    left: 200px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#FirstVideoPlayer
+{
+    width: 100%;
+    height: 100%;
+    background-color: #3b3b3b;
+    position: relative;;
+}
+
+#FirstHeader
+{
+    height: 10%;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+#FirstVideo
+{
+
+}
+
+#FirstVideoLoadButton
+{
+    width: 200px;
+    height: 40px;
+    background: linear-gradient(180deg,#2b8cff,#1070d8);
+    position: absolute;
+
+    top: calc(50% - 20px);
+    left: calc(50% - 100px);
+
+    border-radius: 4px;
+
+    text-align: center;
+    vertical-align: middle;
+    align-content: center;
+    
+    z-index: 1;
+    cursor: pointer;
+}
+
+#FirstPlayButton
+{
+    height: 5%;
+    aspect-ratio: 1/1;
+    background-color: #bbdf3a;
+
+    position: absolute;
+    top: 47.5%;
+    left: 49%;
+
+    cursor: pointer;
+}
+
+#FirstControls
+{
+    max-height: 50px;
+    height: 10%;
+    width: 100%;
+    background-color: #509ee2;
+    position: absolute;
+    bottom: 0;
+}
+
+.PlayerControls
+{
+
+}
+
+.PlayButton
+{
+
+}
+
+.Progress
+{
+
+}
+
+.VolumeControl
+{
+
+}
+
+.FullscreenButton
+{
+
+}
+
+#SecondVideoPlayer
+{
+    width: 40vh;
+    height: 40vh;
+    background-color: #222222;
+    position: absolute;
+    left: calc(50% - 20vh);
+    bottom: 2vh;
+}
+
+#SecondHeader
+{
+    height: 10%;
+    width: 100%;
+    background-color: aliceblue;
+    cursor: grab;
+}
+
+#SecondVideo
+{
+
+}
+
+#SecondVideoLoadButton
+{
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(180deg,#2b8cff,#1070d8);
+    position: absolute;
+
+    top: calc(50% - 10px);
+    left: calc(50% - 50px);
+
+    border-radius: 4px;
+
+    text-align: center;
+    vertical-align: middle;
+    align-content: center;
+    
+    z-index: 1;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#SecondPlayButton
+{
+    height: 5%;
+    aspect-ratio: 1/1;
+    background-color: #bbdf3a;
+
+    position: absolute;
+    top: 47.5%;
+    left: 47.5%;
+    
+    cursor: pointer;
+}
+
+#SecondControls
+{
+    height: 10%;
+    width: 100%;
+    background-color: #0f5088;
+    position: absolute;
+    bottom: 0;
+}
+
+#SecondResizeHandle
+{
+    width: 20px;
+    height: 20px;
+    background-color: #021f38;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+    cursor: nwse-resize;
+}
+
+#SecondResizeHandle::after {
+    content: "";
+    width: 60%;
+    height: 60%;
+    border-right: 2px solid rgba(255,255,255,0.85);
+    border-bottom: 2px solid rgba(255,255,255,0.85);
+    transform: rotate(0deg);
+  }
+
+
+.Hide,
+#FirstPlayButton.Hide,
+#FirstVideoLoadButton.Hide,
+#SecondPlayButton.Hide
+#SecondVideoLoadButton.Hide
+{
+    display: none;
+}
+
+#FirstHeader.SoftHide,
+#FirstPlayButton.SoftHide,
+#FirstControls.SoftHide,
+#SecondHeader.SoftHide
+#SecondPlayButton.SoftHide
+#SecondControls.SoftHide
+#SecondResizeHandle.SoftHide
+{
+    opacity: 0;
 }
