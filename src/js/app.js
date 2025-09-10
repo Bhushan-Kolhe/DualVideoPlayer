@@ -32,6 +32,9 @@ const SecondVideoControlsVolumeButtonIcon = document.querySelector("#SecondContr
 const FirstVideoProgressInput = document.querySelector("#FirstControls .Progress > input")
 const SecondVideoProgressInput = document.querySelector("#SecondControls .Progress > input")
 
+const FirstVideoVolumeInput = document.querySelector("#FirstControls .VolumeControl .VolumeFillContainer > input")
+const SecondVideoVolumeInput = document.querySelector("#SecondControls .VolumeControl .VolumeFillContainer > input")
+
 // Configuration Variables
 const MinWidth = 200; 
 const MinHeight = 200;
@@ -269,6 +272,11 @@ const OnFirstVideoProgressInput = () =>
     FirstVideo.currentTime = FirstVideoProgressInput.value;
 }
 
+const OnFirstVideoVolumeInput = () =>
+{
+    FirstVideo.volume = FirstVideoVolumeInput.value/100;
+}
+
 const PlayFirstVideo = () =>
 {
     FirstVideo.play();
@@ -329,6 +337,7 @@ FirstVideoControlsFullscreenButton.addEventListener('click', OnClickFirstVideoCo
 FirstVideo.addEventListener("loadedmetadata", OnFirstVideoMetaDataUpdate);
 FirstVideo.addEventListener("timeupdate", OnFirstVideoTimeUpdate);
 FirstVideoProgressInput.addEventListener("input", OnFirstVideoProgressInput);
+FirstVideoVolumeInput.addEventListener("input", OnFirstVideoVolumeInput);
 
 // Second Video Player
 
@@ -407,6 +416,11 @@ const OnSecondVideoProgressInput = () =>
     SecondVideo.currentTime = SecondVideoProgressInput.value;
 }
 
+const OnSecondVideoVolumeInput = () =>
+{
+    SecondVideo.volume = SecondVideoVolumeInput.value/100;
+}
+
 const PlaySecondVideo = () =>
 {
     SecondVideo.play();
@@ -466,3 +480,4 @@ SecondVideoControlsFullscreenButton.addEventListener('click', OnClickSecondVideo
 SecondVideo.addEventListener("loadedmetadata", OnSecondVideoMetaDataUpdate);
 SecondVideo.addEventListener("timeupdate", OnSecondVideoTimeUpdate);
 SecondVideoProgressInput.addEventListener("input", OnSecondVideoProgressInput);
+SecondVideoVolumeInput.addEventListener("input", OnSecondVideoVolumeInput);
