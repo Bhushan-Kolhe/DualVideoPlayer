@@ -2,7 +2,7 @@
   "name": "dualvideoplayer",
   "version": "1.0.0",
   "description": "Play two videos at once",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "electron .",
     "test": "test"
