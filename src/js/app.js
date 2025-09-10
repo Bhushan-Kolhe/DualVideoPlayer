@@ -202,45 +202,37 @@ window.addEventListener("mousedown", ResetTimer);
 
 // First Video Player
 
+let IsFirstVideoLoaded = false;
 let IsFirstVideoPlaying = false;
 let IsFirstVideoMuted = false;
 let IsFirstVideoFullscreen = false;
+
+let FirstVideoPreviousVolume = 100;
 
 const OnClickFirstVideoLoadButton = () =>
 {
     FirstVideoLoadButton.classList.add("Hide");
     FirstPlayButton.classList.remove("SoftHide");
 
-    FirstVideo.setAttribute('src',"../../Resources/Video/test.mp4")
+    FirstVideo.setAttribute('src',"../../Resources/Video/test.mp4");
+    IsFirstVideoLoaded = true;
 };
 
 const OnClickFirstPlayButton = () =>
 {
-    if(IsFirstVideoPlaying)
-    {
-        PauseFirstVideo();
-    }
-    else
-    {
-        PlayFirstVideo();
-    }
+    TogglePlayFirstVideo();
 }
 
 const OnClickFirstVideoControlsPlayButton = () => 
 {
-    if(IsFirstVideoPlaying)
-    {
-        PauseFirstVideo();
-    }
-    else
-    {
-        PlayFirstVideo();
-    }
+    TogglePlayFirstVideo();
 }
 
 const OnClickFirstVideoControlsStopButton = () =>
 {
     IsFirstVideoPlaying = false;
+    IsFirstVideoLoaded = false;
+
     FirstVideo.setAttribute('src','');
     FirstVideoLoadButton.classList.remove("Hide");
     FirstPlayButton.classList.add("SoftHide");
@@ -255,26 +247,12 @@ const OnClickFirstVideoControlsStopButton = () =>
 
 const OnClickFirstVideoControlsVolumeButton = () => 
 {
-    if(IsFirstVideoMuted)
-    {
-        UnmuteFirstVideo();
-    }
-    else
-    {
-        MuteFirstVideo();
-    }
+    ToggleMuteFirstVideo();
 }
 
 const OnClickFirstVideoControlsFullscreenButton = () => 
 {
-    if(IsFirstVideoFullscreen)
-    {
-        RestoreFirstVideo();
-    }
-    else
-    {
-        FullscreenFirstVideo();
-    }
+    ToggleFullscreenFirstVideo();
 }
 
 const OnFirstVideoMetaDataUpdate = () => 
@@ -296,6 +274,50 @@ const OnFirstVideoVolumeInput = () =>
 {
     UnmuteFirstVideo();
     FirstVideo.volume = FirstVideoVolumeInput.value/100;
+}
+
+const TogglePlayFirstVideo = () => 
+{
+    if(!IsFirstVideoLoaded) return;
+
+    if(IsFirstVideoPlaying)
+    {
+        PauseFirstVideo();
+    }
+    else
+    {
+        PlayFirstVideo();
+    }
+}
+
+const ToggleMuteFirstVideo = () =>
+{
+    if(!IsFirstVideoLoaded) return;
+
+    if(IsFirstVideoMuted)
+    {
+        FirstVideoVolumeInput.value = FirstVideoPreviousVolume;
+        UnmuteFirstVideo();
+    }
+    else
+    {
+        FirstVideoPreviousVolume = FirstVideoVolumeInput.value;
+        MuteFirstVideo();
+    }
+}
+
+const ToggleFullscreenFirstVideo = () =>
+{
+    if(!IsFirstVideoLoaded) return;
+
+    if(IsFirstVideoFullscreen)
+    {
+        RestoreFirstVideo();
+    }
+    else
+    {
+        FullscreenFirstVideo();
+    }
 }
 
 const PlayFirstVideo = () =>
@@ -364,9 +386,12 @@ FirstVideoVolumeInput.addEventListener("input", OnFirstVideoVolumeInput);
 
 // Second Video Player
 
+let IsSecondVideoLoaded = false;
 let IsSecondVideoPlaying = false;
 let IsSecondVideoMuted = false;
 let IsSecondVideoFullscreen = false;
+
+let SecondVideoPreviousVolume = 100;
 
 const OnClickSecondVideoLoadButton = () =>
 {
@@ -374,35 +399,23 @@ const OnClickSecondVideoLoadButton = () =>
     SecondPlayButton.classList.remove("SoftHide");
 
     SecondVideo.setAttribute('src',"../../Resources/Video/test.mp4")
+    IsSecondVideoLoaded = true;
 };
 
 const OnClickSecondPlayButton = () =>
 {
-    if(IsSecondVideoPlaying)
-    {
-        PauseSecondVideo();
-    }
-    else
-    {
-        PlaySecondVideo();
-    }
+    TogglePlaySecondVideo();
 }
 
 const OnClickSecondVideoControlsPlayButton = () => 
 {
-    if(IsSecondVideoPlaying)
-    {
-        PauseSecondVideo();
-    }
-    else
-    {
-        PlaySecondVideo();
-    }
+    TogglePlaySecondVideo();
 }
 
 const OnClickSecondVideoControlsStopButton = () =>
 {
     IsSecondVideoPlaying = false;
+    IsSecondVideoLoaded - false;
     SecondVideo.setAttribute('src','');
     SecondVideoLoadButton.classList.remove("Hide");
     SecondPlayButton.classList.add("SoftHide");
@@ -417,26 +430,12 @@ const OnClickSecondVideoControlsStopButton = () =>
 
 const OnClickSecondVideoControlsVolumeButton = () => 
 {
-    if(IsSecondVideoMuted)
-    {
-        UnmuteSecondVideo();
-    }
-    else
-    {
-        MuteSecondVideo();
-    }
+    ToggleMuteSecondVideo();
 }
 
 const OnClickSecondVideoControlsFullscreenButton = () => 
 {
-    if(IsSecondVideoFullscreen)
-    {
-        RestoreSecondVideo();
-    }
-    else
-    {
-        FullscreenSecondVideo();
-    }
+    ToggleFullscreenSecondVideo();
 }
 
 const OnSecondVideoMetaDataUpdate = () => 
@@ -458,6 +457,50 @@ const OnSecondVideoVolumeInput = () =>
 {
     UnmuteSecondVideo();
     SecondVideo.volume = SecondVideoVolumeInput.value/100;
+}
+
+const TogglePlaySecondVideo = () => 
+{
+    if(!IsSecondVideoLoaded) return;
+
+    if(IsSecondVideoPlaying)
+    {
+        PauseSecondVideo();
+    }
+    else
+    {
+        PlaySecondVideo();
+    }
+}
+
+const ToggleMuteSecondVideo = () =>
+{
+    if(!IsSecondVideoLoaded) return;
+
+    if(IsSecondVideoMuted)
+    {
+        SecondVideoVolumeInput.value = SecondVideoPreviousVolume;
+        UnmuteSecondVideo();
+    }
+    else
+    {
+        SecondVideoPreviousVolume = SecondVideoVolumeInput.value;
+        MuteSecondVideo();
+    }
+}
+
+const ToggleFullscreenSecondVideo = () =>
+{
+    if(!IsSecondVideoLoaded) return;
+
+    if(IsSecondVideoFullscreen)
+    {
+        RestoreSecondVideo();
+    }
+    else
+    {
+        FullscreenSecondVideo();
+    }
 }
 
 const PlaySecondVideo = () =>
@@ -522,3 +565,244 @@ SecondVideo.addEventListener("loadedmetadata", OnSecondVideoMetaDataUpdate);
 SecondVideo.addEventListener("timeupdate", OnSecondVideoTimeUpdate);
 SecondVideoProgressInput.addEventListener("input", OnSecondVideoProgressInput);
 SecondVideoVolumeInput.addEventListener("input", OnSecondVideoVolumeInput);
+
+
+// Keybinds
+
+const OnKeyDown = (keyEvent) =>
+{
+    switch(keyEvent.key)
+    {
+        case " ":
+            {
+                if(keyEvent.shiftKey)
+                {
+                    TogglePlayFirstVideo();
+                    TogglePlaySecondVideo();
+                }
+                else if(keyEvent.ctrlKey)
+                {
+                    TogglePlaySecondVideo();
+                }
+                else
+                {
+                    TogglePlayFirstVideo();
+                }
+            }
+            break;
+        case "m":
+            {
+                if(keyEvent.altKey && keyEvent.ctrlKey)
+                {
+                    ToggleMuteFirstVideo();
+                    ToggleMuteSecondVideo();
+                }
+                else if(keyEvent.altKey)
+                {
+                    ToggleMuteSecondVideo();
+                }
+                else
+                {
+                    ToggleMuteFirstVideo();
+                }
+            }
+            break;
+        case "f":
+            {
+                if(keyEvent.ctrlKey)
+                {
+                    ToggleFullscreenSecondVideo();
+                }
+                else
+                {
+                    ToggleFullscreenFirstVideo();
+                }
+            }
+            break;
+        case "ArrowRight":
+            {
+                if(keyEvent.shiftKey && keyEvent.ctrlKey)
+                {
+                    BothVideoSuperSeekForward();
+                }else if(keyEvent.ctrlKey && keyEvent.altKey)
+                {
+                    SecondVideoSuperSeekForward();
+                }else if(keyEvent.altKey)
+                {
+                    SecondVideoSeekForward();
+                }else if(keyEvent.ctrlKey)
+                {
+                    FirstVideoSuperSeekForward();
+                }else if(keyEvent.shiftKey)
+                {
+                    BothVideoSeekForward();
+                }else
+                {
+                    FirstVideoSeekForward();
+                }
+            }
+            break;
+        case "ArrowDown":
+            {
+                if(keyEvent.altKey)
+                {
+                    SecondVideoVolumeDown();
+                }else if(keyEvent.shiftKey)
+                {   
+                    BothVideoVolumeDown();
+                }else
+                {
+                    FirstVideoVolumeDown();
+                }
+            }
+            break;
+        case "ArrowLeft":
+            {
+                if(keyEvent.shiftKey && keyEvent.ctrlKey)
+                {
+                    BothVideoSuperSeekReverse();
+                }else if(keyEvent.ctrlKey && keyEvent.altKey)
+                {
+                    SecondVideoSuperSeekReverse();
+                }else if(keyEvent.altKey)
+                {
+                    SecondVideoSeekReverse();
+                }else if( keyEvent.ctrlKey)
+                {
+                    FirstVideoSuperSeekReverse();
+                }else if(keyEvent.shiftKey)
+                {
+                    BothVideoSeekReverse();
+                }else
+                {
+                    FirstVideoSeekReverse();
+                }
+            }
+            break;
+        case "ArrowUp":
+            {
+                if(keyEvent.altKey)
+                {
+                    SecondVideoVolumeUp();
+                }else if(keyEvent.shiftKey)
+                {   
+                    BothVideoVolumeUp();
+                }else
+                {
+                    FirstVideoVolumeUp();
+                }
+            }
+            break;
+        
+    }
+}
+
+window.addEventListener("keyup", OnKeyDown);
+
+// Seek Forward
+
+const BothVideoSeekForward = () =>
+{
+    FirstVideoSeekForward();
+    SecondVideoSeekForward();
+}
+
+const BothVideoSuperSeekForward = () =>
+{
+    FirstVideoSuperSeekForward();
+    SecondVideoSuperSeekForward();
+}
+
+const FirstVideoSeekForward = () =>
+{
+    FirstVideo.currentTime = Math.min(FirstVideo.currentTime + 15, FirstVideo.duration);
+}
+
+const FirstVideoSuperSeekForward = () =>
+{
+    FirstVideo.currentTime = Math.min(FirstVideo.currentTime + 60, FirstVideo.duration);
+}
+
+const SecondVideoSeekForward = () =>
+{
+    SecondVideo.currentTime = Math.min(SecondVideo.currentTime + 15, SecondVideo.duration);
+}
+
+const SecondVideoSuperSeekForward = () =>
+{
+    SecondVideo.currentTime = Math.min(SecondVideo.currentTime + 60, SecondVideo.duration);
+}
+
+// Seek Reverse
+
+const BothVideoSeekReverse = () =>
+{
+    FirstVideoSeekReverse();
+    SecondVideoSeekReverse();
+}
+
+const BothVideoSuperSeekReverse = () =>
+{
+    FirstVideoSuperSeekReverse();
+    SecondVideoSuperSeekReverse();
+}
+
+const FirstVideoSeekReverse = () =>
+{
+    FirstVideo.currentTime = Math.max(FirstVideo.currentTime - 15, 0);
+}
+
+const FirstVideoSuperSeekReverse = () =>
+{
+    FirstVideo.currentTime = Math.max(FirstVideo.currentTime - 60, 0);
+}
+
+const SecondVideoSeekReverse = () =>
+{
+    SecondVideo.currentTime = Math.max(SecondVideo.currentTime - 15, 0);
+}
+
+const SecondVideoSuperSeekReverse = () =>
+{
+    SecondVideo.currentTime = Math.max(SecondVideo.currentTime - 60, 0);
+}
+
+// Volume Up
+
+const BothVideoVolumeUp = () =>
+{
+    FirstVideoVolumeUp();
+    SecondVideoVolumeUp();
+}
+
+const FirstVideoVolumeUp = () =>
+{
+    FirstVideo.volume = Math.min(1, FirstVideo.volume + 0.1);
+    FirstVideoVolumeInput.value = FirstVideo.volume * 100;
+}
+
+const SecondVideoVolumeUp = () =>
+{
+    SecondVideo.volume = Math.min(1, SecondVideo.volume + 0.1);
+    SecondVideoVolumeInput.value = SecondVideo.volume * 100;
+}
+
+// Volume down
+
+const BothVideoVolumeDown = () =>
+{
+    FirstVideoVolumeDown();
+    SecondVideoVolumeDown();
+}
+
+const FirstVideoVolumeDown = () =>
+{
+    FirstVideo.volume = Math.max(0, FirstVideo.volume - 0.1);
+    FirstVideoVolumeInput.value = FirstVideo.volume * 100;
+}
+
+const SecondVideoVolumeDown = () =>
+{
+    SecondVideo.volume = Math.max(0, SecondVideo.volume - 0.1);
+    SecondVideoVolumeInput.value = SecondVideo.volume * 100;
+}
