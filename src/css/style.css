@@ -72,21 +72,34 @@ body
 {
     height: 5%;
     aspect-ratio: 1/1;
-    background-color: #bbdf3a;
+    background-color: #00d1b2;
 
     position: absolute;
     top: 47.5%;
     left: 49%;
 
     cursor: pointer;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#FirstPlayButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
 }
 
 #FirstControls
 {
     max-height: 50px;
     height: 10%;
-    width: 100%;
-    background-color: #509ee2;
+    width: 90%;
     position: absolute;
     bottom: 0;
 
@@ -95,27 +108,94 @@ body
 
 .PlayerControls
 {
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .PlayButton
 {
+    aspect-ratio: 1/1;
+    height: 100%;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.PlayButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
 }
 
 .Progress
+{
+    height: 100%;
+    flex-grow: 1;
+    background-color: #6c7212;
+}
+
+.ProgressFill
 {
 
 }
 
 .VolumeControl
 {
+    height: 100%;
+    width: 20%;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.VolumeButton
+{
+    aspect-ratio: 1/1;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.VolumeButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
+}
+
+.VolumeFill
+{
+    height: 100%;
+    flex-grow: 1;
+    background-color: #271272;
 }
 
 .FullscreenButton
 {
+    aspect-ratio: 1/1;
+    height: 100%;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.FullscreenButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
 }
 
 #SecondVideoPlayer
@@ -133,6 +213,8 @@ body
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    border-radius: 5px;
 }
 
 #SecondHeader
@@ -182,20 +264,33 @@ body
 {
     height: 5%;
     aspect-ratio: 1/1;
-    background-color: #bbdf3a;
+    background-color: #00d1b2;
 
     position: absolute;
     top: 47.5%;
     left: 47.5%;
     
     cursor: pointer;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#SecondPlayButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
 }
 
 #SecondControls
 {
     height: 10%;
-    width: 100%;
-    background-color: #0f5088;
+    width: 90%;
     position: absolute;
     bottom: 0;
 
@@ -204,8 +299,8 @@ body
 
 #SecondResizeHandle
 {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background-color: #021f38;
     position: absolute;
     right: 0;
@@ -225,8 +320,8 @@ body
     content: "";
     width: 60%;
     height: 60%;
-    border-right: 2px solid rgba(255,255,255,0.85);
-    border-bottom: 2px solid rgba(255,255,255,0.85);
+    border-right: 1px solid rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.85);
     transform: rotate(0deg);
   }
 

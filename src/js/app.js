@@ -12,10 +12,33 @@ const SecondPlayButton = document.getElementById("SecondPlayButton");
 const SecondControls = document.getElementById("SecondControls");
 const SecondResizeHandle = document.getElementById("SecondResizeHandle");
 
+const FirstPlayButtonIcon = document.querySelector("#FirstPlayButton > img")
+const SecondPlayButtonIcon = document.querySelector("#SecondPlayButton > img")
+
+const FirstVideoControlsPlayButton = document.querySelector("#FirstControls .PlayButton");
+const FirstVideoControlsVolumeButton = document.querySelector("#FirstControls .VolumeButton");
+const FirstVideoControlsFullscreenButton = document.querySelector("#FirstControls .FullscreenButton");
+
+const FirstVideoControlsPlayButtonIcon = document.querySelector("#FirstControls .PlayButton > img");
+const FirstVideoControlsVolumeButtonIcon = document.querySelector("#FirstControls .VolumeButton > img");
+
+const SecondVideoControlsPlayButton = document.querySelector("#SecondControls .PlayButton");
+const SecondVideoControlsVolumeButton = document.querySelector("#SecondControls .VolumeButton");
+const SecondVideoControlsFullscreenButton = document.querySelector("#SecondControls .FullscreenButton");
+
+const SecondVideoControlsPlayButtonIcon = document.querySelector("#SecondControls .PlayButton > img");
+const SecondVideoControlsVolumeButtonIcon = document.querySelector("#SecondControls .VolumeButton > img");
+
 // Configuration Variables
 const MinWidth = 200; 
 const MinHeight = 200;
 const FadePlayerControlsDelay = 2000;
+
+const PlayIcon = "../../Resources/Icons/play-solid-full.svg";
+const PauseIcon = "../../Resources/Icons/pause-solid-full.svg";
+
+const VolumeIcon = "../../Resources/Icons/volume-high-solid-full.svg";
+const MuteIcon = "../../Resources/Icons/volume-xmark-solid-full.svg";
 
 // Helper Functions
 
@@ -169,7 +192,8 @@ window.addEventListener("mousedown", ResetTimer);
 // First Video Player
 
 let IsFirstVideoPlaying = false;
-let IsSecondVideoPlaying = false;
+let IsFirstVideoMuted = false;
+let IsFirstVideoFullscreen = false;
 
 const OnClickFirstVideoLoadButton = () =>
 {
@@ -191,11 +215,50 @@ const OnClickFirstPlayButton = () =>
     }
 }
 
+const OnClickFirstVideoControlsPlayButton = () => 
+{
+    if(IsFirstVideoPlaying)
+    {
+        PauseFirstVideo();
+    }
+    else
+    {
+        PlayFirstVideo();
+    }
+}
+
+const OnClickFirstVideoControlsVolumeButton = () => 
+{
+    if(IsFirstVideoMuted)
+    {
+        UnmuteFirstVideo();
+    }
+    else
+    {
+        MuteFirstVideo();
+    }
+}
+
+const OnClickFirstVideoControlsFullscreenButton = () => 
+{
+    if(IsFirstVideoFullscreen)
+    {
+        RestoreFirstVideo();
+    }
+    else
+    {
+        FullscreenFirstVideo();
+    }
+}
+
 const PlayFirstVideo = () =>
 {
     FirstVideo.play();
     IsFirstVideoPlaying = true;
     FirstPlayButton.classList.add("SoftHide");
+
+    FirstPlayButtonIcon.setAttribute('src', PauseIcon);
+    FirstVideoControlsPlayButtonIcon.setAttribute('src', PauseIcon);
 }
 
 const PauseFirstVideo = () =>
@@ -203,13 +266,53 @@ const PauseFirstVideo = () =>
     FirstVideo.pause();
     IsFirstVideoPlaying = false;
     FirstPlayButton.classList.remove("SoftHide");
+
+    FirstPlayButtonIcon.setAttribute('src', PlayIcon);
+    FirstVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
 }
+
+const MuteFirstVideo = () => 
+{
+    FirstVideo.muted = true;
+    IsFirstVideoMuted = true;
+
+    FirstVideoControlsVolumeButtonIcon.setAttribute('src', MuteIcon)
+}
+
+const UnmuteFirstVideo = () =>
+{
+    FirstVideo.muted = false;
+    IsFirstVideoMuted = false;
+
+    FirstVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+}
+
+const FullscreenFirstVideo = () =>
+{
+    FirstVideoPlayer.requestFullscreen();
+    IsFirstVideoFullscreen = true;
+}
+
+const RestoreFirstVideo = () =>
+{
+    document.exitFullscreen();
+    IsFirstVideoFullscreen = false;
+}
+
 
 FirstVideoLoadButton.addEventListener('click', OnClickFirstVideoLoadButton);
 FirstPlayButton.addEventListener('click', OnClickFirstPlayButton);
 FirstVideo.addEventListener('click', PauseFirstVideo);
 
+FirstVideoControlsPlayButton.addEventListener('click', OnClickFirstVideoControlsPlayButton);
+FirstVideoControlsVolumeButton.addEventListener('click', OnClickFirstVideoControlsVolumeButton);
+FirstVideoControlsFullscreenButton.addEventListener('click', OnClickFirstVideoControlsFullscreenButton);
+
 // Second Video Player
+
+let IsSecondVideoPlaying = false;
+let IsSecondVideoMuted = false;
+let IsSecondVideoFullscreen = false;
 
 const OnClickSecondVideoLoadButton = () =>
 {
@@ -231,11 +334,50 @@ const OnClickSecondPlayButton = () =>
     }
 }
 
+const OnClickSecondVideoControlsPlayButton = () => 
+{
+    if(IsSecondVideoPlaying)
+    {
+        PauseSecondVideo();
+    }
+    else
+    {
+        PlaySecondVideo();
+    }
+}
+
+const OnClickSecondVideoControlsVolumeButton = () => 
+{
+    if(IsSecondVideoMuted)
+    {
+        UnmuteSecondVideo();
+    }
+    else
+    {
+        MuteSecondVideo();
+    }
+}
+
+const OnClickSecondVideoControlsFullscreenButton = () => 
+{
+    if(IsSecondVideoFullscreen)
+    {
+        RestoreSecondVideo();
+    }
+    else
+    {
+        FullscreenSecondVideo();
+    }
+}
+
 const PlaySecondVideo = () =>
 {
     SecondVideo.play();
     IsSecondVideoPlaying = true;
     SecondPlayButton.classList.add("SoftHide");
+
+    SecondPlayButtonIcon.setAttribute('src', PauseIcon);
+    SecondVideoControlsPlayButtonIcon.setAttribute('src', PauseIcon);
 }
 
 const PauseSecondVideo = () =>
@@ -243,8 +385,43 @@ const PauseSecondVideo = () =>
     SecondVideo.pause();
     IsSecondVideoPlaying = false;
     SecondPlayButton.classList.remove("SoftHide");
+
+    SecondPlayButtonIcon.setAttribute('src', PlayIcon);
+    SecondVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
+}
+
+const MuteSecondVideo = () => 
+{
+    SecondVideo.muted = true;
+    IsSecondVideoMuted = true;
+
+    SecondVideoControlsVolumeButtonIcon.setAttribute('src', MuteIcon)
+}
+
+const UnmuteSecondVideo = () =>
+{
+    SecondVideo.muted = false;
+    IsSecondVideoMuted = false;
+
+    SecondVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+}
+
+const FullscreenSecondVideo = () =>
+{
+    SecondVideoPlayer.requestFullscreen();
+    IsSecondVideoFullscreen = true;
+}
+
+const RestoreSecondVideo = () =>
+{
+    document.exitFullscreen();
+    IsSecondVideoFullscreen = false;
 }
 
 SecondVideoLoadButton.addEventListener('click', OnClickSecondVideoLoadButton);
 SecondPlayButton.addEventListener('click', OnClickSecondPlayButton);
 SecondVideo.addEventListener('click', PauseSecondVideo);
+
+SecondVideoControlsPlayButton.addEventListener('click', OnClickSecondVideoControlsPlayButton);
+SecondVideoControlsVolumeButton.addEventListener('click', OnClickSecondVideoControlsVolumeButton);
+SecondVideoControlsFullscreenButton.addEventListener('click', OnClickSecondVideoControlsFullscreenButton);
