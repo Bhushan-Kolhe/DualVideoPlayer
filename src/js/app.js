@@ -212,7 +212,7 @@ let FirstVideoPreviousVolume = 100;
 const OnClickFirstVideoLoadButton = () =>
 {
     FirstVideoLoadButton.classList.add("Hide");
-    FirstPlayButton.classList.remove("SoftHide");
+    FirstPlayButton.classList.remove("Hide");
 
     FirstVideo.setAttribute('src',"../../Resources/Video/test.mp4");
     IsFirstVideoLoaded = true;
@@ -235,7 +235,7 @@ const OnClickFirstVideoControlsStopButton = () =>
 
     FirstVideo.setAttribute('src','');
     FirstVideoLoadButton.classList.remove("Hide");
-    FirstPlayButton.classList.add("SoftHide");
+    FirstPlayButton.classList.add("Hide");
 
     FirstPlayButtonIcon.setAttribute('src', PlayIcon);
     FirstVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
@@ -396,7 +396,7 @@ let SecondVideoPreviousVolume = 100;
 const OnClickSecondVideoLoadButton = () =>
 {
     SecondVideoLoadButton.classList.add("Hide");
-    SecondPlayButton.classList.remove("SoftHide");
+    SecondPlayButton.classList.remove("Hide");
 
     SecondVideo.setAttribute('src',"../../Resources/Video/test.mp4")
     IsSecondVideoLoaded = true;
@@ -418,7 +418,7 @@ const OnClickSecondVideoControlsStopButton = () =>
     IsSecondVideoLoaded - false;
     SecondVideo.setAttribute('src','');
     SecondVideoLoadButton.classList.remove("Hide");
-    SecondPlayButton.classList.add("SoftHide");
+    SecondPlayButton.classList.add("Hide");
 
     SecondPlayButtonIcon.setAttribute('src', PlayIcon);
     SecondVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);

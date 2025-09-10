@@ -261,9 +261,9 @@ body
 #SecondHeader
 {
     height: 10%;
-    max-height: 20px;
+    max-height: 30px;
     width: 100%;
-    background-color: aliceblue;
+    opacity: 0;
     cursor: grab;
 
     position: absolute;
@@ -379,7 +379,6 @@ body
 #FirstHeader.SoftHide,
 #FirstPlayButton.SoftHide,
 #FirstControls.SoftHide,
-#SecondHeader.SoftHide,
 #SecondPlayButton.SoftHide,
 #SecondControls.SoftHide,
 #SecondResizeHandle.SoftHide
