@@ -241,11 +241,11 @@ body
 
 #SecondVideoPlayer
 {
-    width: 40vh;
+    width: 60vh;
     height: 40vh;
     background-color: #222222;
     position: absolute;
-    left: calc(50% - 20vh);
+    left: calc(50% - 30vh);
     bottom: 2vh;
     z-index: 10;
     overflow: hidden;
