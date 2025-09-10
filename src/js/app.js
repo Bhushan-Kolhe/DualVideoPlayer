@@ -35,6 +35,11 @@ const SecondVideoProgressInput = document.querySelector("#SecondControls .Progre
 const FirstVideoVolumeInput = document.querySelector("#FirstControls .VolumeControl .VolumeFillContainer > input")
 const SecondVideoVolumeInput = document.querySelector("#SecondControls .VolumeControl .VolumeFillContainer > input")
 
+const FirstVideoControlsStopButton = document.querySelector("#FirstControls .StopButton");
+const SecondVideoControlsStopButton = document.querySelector("#SecondControls .StopButton");
+
+
+
 // Configuration Variables
 const MinWidth = 200; 
 const MinHeight = 200;
@@ -233,6 +238,21 @@ const OnClickFirstVideoControlsPlayButton = () =>
     }
 }
 
+const OnClickFirstVideoControlsStopButton = () =>
+{
+    IsFirstVideoPlaying = false;
+    FirstVideo.setAttribute('src','');
+    FirstVideoLoadButton.classList.remove("Hide");
+    FirstPlayButton.classList.add("SoftHide");
+
+    FirstPlayButtonIcon.setAttribute('src', PlayIcon);
+    FirstVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
+    FirstVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+    FirstVideoProgressInput.max = 0;
+    FirstVideoProgressInput.value = 0;
+    FirstVideoVolumeInput.value = 100;
+}
+
 const OnClickFirstVideoControlsVolumeButton = () => 
 {
     if(IsFirstVideoMuted)
@@ -274,6 +294,7 @@ const OnFirstVideoProgressInput = () =>
 
 const OnFirstVideoVolumeInput = () =>
 {
+    UnmuteFirstVideo();
     FirstVideo.volume = FirstVideoVolumeInput.value/100;
 }
 
@@ -302,6 +323,7 @@ const MuteFirstVideo = () =>
     FirstVideo.muted = true;
     IsFirstVideoMuted = true;
 
+    FirstVideoVolumeInput.value = 0;
     FirstVideoControlsVolumeButtonIcon.setAttribute('src', MuteIcon)
 }
 
@@ -331,6 +353,7 @@ FirstPlayButton.addEventListener('click', OnClickFirstPlayButton);
 FirstVideo.addEventListener('click', PauseFirstVideo);
 
 FirstVideoControlsPlayButton.addEventListener('click', OnClickFirstVideoControlsPlayButton);
+FirstVideoControlsStopButton.addEventListener('click', OnClickFirstVideoControlsStopButton);
 FirstVideoControlsVolumeButton.addEventListener('click', OnClickFirstVideoControlsVolumeButton);
 FirstVideoControlsFullscreenButton.addEventListener('click', OnClickFirstVideoControlsFullscreenButton);
 
@@ -377,6 +400,21 @@ const OnClickSecondVideoControlsPlayButton = () =>
     }
 }
 
+const OnClickSecondVideoControlsStopButton = () =>
+{
+    IsSecondVideoPlaying = false;
+    SecondVideo.setAttribute('src','');
+    SecondVideoLoadButton.classList.remove("Hide");
+    SecondPlayButton.classList.add("SoftHide");
+
+    SecondPlayButtonIcon.setAttribute('src', PlayIcon);
+    SecondVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
+    SecondVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+    SecondVideoProgressInput.max = 0;
+    SecondVideoProgressInput.value = 0;
+    SecondVideoVolumeInput.value = 100;
+}
+
 const OnClickSecondVideoControlsVolumeButton = () => 
 {
     if(IsSecondVideoMuted)
@@ -418,6 +456,7 @@ const OnSecondVideoProgressInput = () =>
 
 const OnSecondVideoVolumeInput = () =>
 {
+    UnmuteSecondVideo();
     SecondVideo.volume = SecondVideoVolumeInput.value/100;
 }
 
@@ -446,6 +485,7 @@ const MuteSecondVideo = () =>
     SecondVideo.muted = true;
     IsSecondVideoMuted = true;
 
+    SecondVideoVolumeInput.value = 0;
     SecondVideoControlsVolumeButtonIcon.setAttribute('src', MuteIcon)
 }
 
@@ -474,6 +514,7 @@ SecondPlayButton.addEventListener('click', OnClickSecondPlayButton);
 SecondVideo.addEventListener('click', PauseSecondVideo);
 
 SecondVideoControlsPlayButton.addEventListener('click', OnClickSecondVideoControlsPlayButton);
+SecondVideoControlsStopButton.addEventListener('click', OnClickSecondVideoControlsStopButton);
 SecondVideoControlsVolumeButton.addEventListener('click', OnClickSecondVideoControlsVolumeButton);
 SecondVideoControlsFullscreenButton.addEventListener('click', OnClickSecondVideoControlsFullscreenButton);
 

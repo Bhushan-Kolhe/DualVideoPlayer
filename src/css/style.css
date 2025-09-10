@@ -123,9 +123,31 @@ body
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .PlayButton > img
+{
+    width: 50%;
+    height: 50%;
+    filter: invert(100%);
+}
+
+.StopButton
+{
+    aspect-ratio: 1/1;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.StopButton > img
 {
     width: 50%;
     height: 50%;
