@@ -18,19 +18,34 @@ body
     height: 100%;
     background-color: #3b3b3b;
     position: relative;;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #FirstHeader
 {
-    max-height: 50px;
+    max-height: 20px;
     height: 10%;
     width: 100%;
     background-color: aliceblue;
+
+    position: absolute;
+    top: 0;
+
+    z-index: 1;
+
+    transition: opacity 0.2s ease-out;
 }
 
 #FirstVideo
 {
-
+    object-fit: cover;
+    height: 100%;
 }
 
 #FirstVideoLoadButton
@@ -74,6 +89,8 @@ body
     background-color: #509ee2;
     position: absolute;
     bottom: 0;
+
+    transition: opacity 0.2s ease-out;
 }
 
 .PlayerControls
@@ -110,19 +127,34 @@ body
     left: calc(50% - 20vh);
     bottom: 2vh;
     z-index: 10;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #SecondHeader
 {
     height: 10%;
+    max-height: 20px;
     width: 100%;
     background-color: aliceblue;
     cursor: grab;
+
+    position: absolute;
+    top: 0;
+
+    z-index: 1;
+
+    transition: opacity 0.2s ease-out;
 }
 
 #SecondVideo
 {
-
+    object-fit: cover;
+    height: 100%;
 }
 
 #SecondVideoLoadButton
@@ -166,6 +198,8 @@ body
     background-color: #0f5088;
     position: absolute;
     bottom: 0;
+
+    transition: opacity 0.2s ease-out;
 }
 
 #SecondResizeHandle
@@ -183,6 +217,8 @@ body
 
     border-radius: 4px;
     cursor: nwse-resize;
+
+    transition: opacity 0.2s ease-out;
 }
 
 #SecondResizeHandle::after {
@@ -213,4 +249,10 @@ body
 #SecondResizeHandle.SoftHide
 {
     opacity: 0;
+}
+
+#FirstPlayButton.SoftHide:hover,
+#SecondPlayButton.SoftHide:hover
+{
+    opacity: 1;
 }

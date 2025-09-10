@@ -15,6 +15,7 @@ const SecondResizeHandle = document.getElementById("SecondResizeHandle");
 // Configuration Variables
 const MinWidth = 200; 
 const MinHeight = 200;
+const FadePlayerControlsDelay = 2000;
 
 // Helper Functions
 
@@ -131,3 +132,119 @@ const OnResize = (resizeEvent) =>
 }
 
 SecondResizeHandle.addEventListener('pointerdown', OnResize);
+
+// Fade Controls On Inactivity
+
+let InactivityTimer;
+
+const FadeControls = () =>
+{
+    FirstHeader.classList.add("SoftHide");
+    FirstControls.classList.add("SoftHide");
+
+    SecondHeader.classList.add("SoftHide");
+    SecondControls.classList.add("SoftHide");
+    SecondResizeHandle.classList.add("SoftHide");
+}
+
+const ResetTimer = () =>
+{
+    if(FirstHeader.classList.contains("SoftHide"))
+    {
+        FirstHeader.classList.remove("SoftHide");
+        FirstControls.classList.remove("SoftHide");
+
+        SecondHeader.classList.remove("SoftHide");
+        SecondControls.classList.remove("SoftHide");
+        SecondResizeHandle.classList.remove("SoftHide");
+    }
+
+    clearTimeout(InactivityTimer);
+    InactivityTimer = setTimeout(FadeControls, FadePlayerControlsDelay);
+}
+
+window.addEventListener("mousemove", ResetTimer);
+window.addEventListener("mousedown", ResetTimer); 
+
+// First Video Player
+
+let IsFirstVideoPlaying = false;
+let IsSecondVideoPlaying = false;
+
+const OnClickFirstVideoLoadButton = () =>
+{
+    FirstVideoLoadButton.classList.add("Hide");
+    FirstPlayButton.classList.remove("SoftHide");
+
+    FirstVideo.setAttribute('src',"../../Resources/Video/test.mp4")
+};
+
+const OnClickFirstPlayButton = () =>
+{
+    if(IsFirstVideoPlaying)
+    {
+        PauseFirstVideo();
+    }
+    else
+    {
+        PlayFirstVideo();
+    }
+}
+
+const PlayFirstVideo = () =>
+{
+    FirstVideo.play();
+    IsFirstVideoPlaying = true;
+    FirstPlayButton.classList.add("SoftHide");
+}
+
+const PauseFirstVideo = () =>
+{
+    FirstVideo.pause();
+    IsFirstVideoPlaying = false;
+    FirstPlayButton.classList.remove("SoftHide");
+}
+
+FirstVideoLoadButton.addEventListener('click', OnClickFirstVideoLoadButton);
+FirstPlayButton.addEventListener('click', OnClickFirstPlayButton);
+FirstVideo.addEventListener('click', PauseFirstVideo);
+
+// Second Video Player
+
+const OnClickSecondVideoLoadButton = () =>
+{
+    SecondVideoLoadButton.classList.add("Hide");
+    SecondPlayButton.classList.remove("SoftHide");
+
+    SecondVideo.setAttribute('src',"../../Resources/Video/test.mp4")
+};
+
+const OnClickSecondPlayButton = () =>
+{
+    if(IsSecondVideoPlaying)
+    {
+        PauseSecondVideo();
+    }
+    else
+    {
+        PlaySecondVideo();
+    }
+}
+
+const PlaySecondVideo = () =>
+{
+    SecondVideo.play();
+    IsSecondVideoPlaying = true;
+    SecondPlayButton.classList.add("SoftHide");
+}
+
+const PauseSecondVideo = () =>
+{
+    SecondVideo.pause();
+    IsSecondVideoPlaying = false;
+    SecondPlayButton.classList.remove("SoftHide");
+}
+
+SecondVideoLoadButton.addEventListener('click', OnClickSecondVideoLoadButton);
+SecondPlayButton.addEventListener('click', OnClickSecondPlayButton);
+SecondVideo.addEventListener('click', PauseSecondVideo);
