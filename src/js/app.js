@@ -209,13 +209,18 @@ let IsFirstVideoFullscreen = false;
 
 let FirstVideoPreviousVolume = 100;
 
-const OnClickFirstVideoLoadButton = () =>
+const OnClickFirstVideoLoadButton = async () =>
 {
-    FirstVideoLoadButton.classList.add("Hide");
-    FirstPlayButton.classList.remove("Hide");
+    const file = await window.electronAPI.OpenFile();
 
-    FirstVideo.setAttribute('src',"../../Resources/Video/test.mp4");
-    IsFirstVideoLoaded = true;
+    if(file)
+    {
+        FirstVideoLoadButton.classList.add("Hide");
+        FirstPlayButton.classList.remove("Hide");
+
+        FirstVideo.setAttribute('src', file);
+        IsFirstVideoLoaded = true;
+    }
 };
 
 const OnClickFirstPlayButton = () =>
@@ -393,13 +398,20 @@ let IsSecondVideoFullscreen = false;
 
 let SecondVideoPreviousVolume = 100;
 
-const OnClickSecondVideoLoadButton = () =>
+const OnClickSecondVideoLoadButton = async () =>
 {
-    SecondVideoLoadButton.classList.add("Hide");
-    SecondPlayButton.classList.remove("Hide");
+    const file = await window.electronAPI.OpenFile();
 
-    SecondVideo.setAttribute('src',"../../Resources/Video/test.mp4")
-    IsSecondVideoLoaded = true;
+    if(file)
+    {
+        SecondVideoLoadButton.classList.add("Hide");
+        SecondPlayButton.classList.remove("Hide");
+
+        SecondVideo.setAttribute('src', file)
+        IsSecondVideoLoaded = true;
+    }
+
+    
 };
 
 const OnClickSecondPlayButton = () =>
