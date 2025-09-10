@@ -29,6 +29,9 @@ const SecondVideoControlsFullscreenButton = document.querySelector("#SecondContr
 const SecondVideoControlsPlayButtonIcon = document.querySelector("#SecondControls .PlayButton > img");
 const SecondVideoControlsVolumeButtonIcon = document.querySelector("#SecondControls .VolumeButton > img");
 
+const FirstVideoProgressInput = document.querySelector("#FirstControls .Progress > input")
+const SecondVideoProgressInput = document.querySelector("#SecondControls .Progress > input")
+
 // Configuration Variables
 const MinWidth = 200; 
 const MinHeight = 200;
@@ -251,6 +254,21 @@ const OnClickFirstVideoControlsFullscreenButton = () =>
     }
 }
 
+const OnFirstVideoMetaDataUpdate = () => 
+{
+    FirstVideoProgressInput.max = FirstVideo.duration;
+}
+
+const OnFirstVideoTimeUpdate = () =>
+{
+    FirstVideoProgressInput.value = FirstVideo.currentTime;
+}
+
+const OnFirstVideoProgressInput = () =>
+{
+    FirstVideo.currentTime = FirstVideoProgressInput.value;
+}
+
 const PlayFirstVideo = () =>
 {
     FirstVideo.play();
@@ -307,6 +325,10 @@ FirstVideo.addEventListener('click', PauseFirstVideo);
 FirstVideoControlsPlayButton.addEventListener('click', OnClickFirstVideoControlsPlayButton);
 FirstVideoControlsVolumeButton.addEventListener('click', OnClickFirstVideoControlsVolumeButton);
 FirstVideoControlsFullscreenButton.addEventListener('click', OnClickFirstVideoControlsFullscreenButton);
+
+FirstVideo.addEventListener("loadedmetadata", OnFirstVideoMetaDataUpdate);
+FirstVideo.addEventListener("timeupdate", OnFirstVideoTimeUpdate);
+FirstVideoProgressInput.addEventListener("input", OnFirstVideoProgressInput);
 
 // Second Video Player
 
@@ -370,6 +392,21 @@ const OnClickSecondVideoControlsFullscreenButton = () =>
     }
 }
 
+const OnSecondVideoMetaDataUpdate = () => 
+{
+    SecondVideoProgressInput.max = SecondVideo.duration;
+}
+
+const OnSecondVideoTimeUpdate = () =>
+{
+    SecondVideoProgressInput.value = SecondVideo.currentTime;
+}
+
+const OnSecondVideoProgressInput = () =>
+{
+    SecondVideo.currentTime = SecondVideoProgressInput.value;
+}
+
 const PlaySecondVideo = () =>
 {
     SecondVideo.play();
@@ -425,3 +462,7 @@ SecondVideo.addEventListener('click', PauseSecondVideo);
 SecondVideoControlsPlayButton.addEventListener('click', OnClickSecondVideoControlsPlayButton);
 SecondVideoControlsVolumeButton.addEventListener('click', OnClickSecondVideoControlsVolumeButton);
 SecondVideoControlsFullscreenButton.addEventListener('click', OnClickSecondVideoControlsFullscreenButton);
+
+SecondVideo.addEventListener("loadedmetadata", OnSecondVideoMetaDataUpdate);
+SecondVideo.addEventListener("timeupdate", OnSecondVideoTimeUpdate);
+SecondVideoProgressInput.addEventListener("input", OnSecondVideoProgressInput);

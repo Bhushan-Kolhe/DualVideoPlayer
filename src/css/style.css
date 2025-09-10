@@ -136,18 +136,28 @@ body
 {
     height: 100%;
     flex-grow: 1;
-    background-color: #6c7212;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .ProgressFill
 {
+    flex-grow: 1;
+}
 
+.ProgressFill::-webkit-slider-thumb
+{
+    cursor: pointer;
 }
 
 .VolumeControl
 {
     height: 100%;
     width: 20%;
+    max-width: 200px;
 
     display: flex;
     flex-direction: row;
@@ -173,11 +183,20 @@ body
     filter: invert(100%);
 }
 
-.VolumeFill
+.VolumeFillContainer
 {
     height: 100%;
     flex-grow: 1;
-    background-color: #271272;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.VolumeFill{
+    width: 100%;
+    height: 100%;
 }
 
 .FullscreenButton
