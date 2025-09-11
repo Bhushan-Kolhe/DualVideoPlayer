@@ -6,6 +6,7 @@ const createWindow = () =>
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        titleBarStyle: 'hidden',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
@@ -28,7 +29,34 @@ const createWindow = () =>
         }
     }
 
+    const MinimizeWindow = async() =>
+    {
+        win.minimize();
+    }
+
+    const ToggleMaximizeWindow = async() =>
+    {
+        if(win.isMaximized())
+        {
+            win.restore();
+            return false;
+        }else
+        {
+            win.maximize();
+            return true;
+        }
+    }
+
+    const CloseWindow = async() =>
+    {
+        win.close();
+    }
+
     ipcMain.handle('dialog:openFile', OpenFile)
+
+    ipcMain.handle('window:minimizeWindow', MinimizeWindow)
+    ipcMain.handle('window:toggleMaximizeWindow', ToggleMaximizeWindow)
+    ipcMain.handle('window:closeWindow', CloseWindow)
 }
 
 

@@ -38,6 +38,35 @@ const SecondVideoVolumeInput = document.querySelector("#SecondControls .VolumeCo
 const FirstVideoControlsStopButton = document.querySelector("#FirstControls .StopButton");
 const SecondVideoControlsStopButton = document.querySelector("#SecondControls .StopButton");
 
+const MinimizeButton = document.getElementById("MinimizeButton");
+const MaximizeButton = document.getElementById("MaximizeButton");
+const CloseButton = document.getElementById("CloseButton");
+
+
+// Titlebar Buttons
+let IsMaximized = false;
+
+const OnClickMinimizeButton = async() =>
+{
+    await window.electronAPI.MinimizeWindow();
+
+}
+
+const OnClickMaximizeButton = async() =>
+{
+    IsMaximized = await window.electronAPI.ToggleMaximizeWindow();
+
+}
+
+const OnClickCloseButton = async() =>
+{
+    await window.electronAPI.CloseWindow();
+
+}
+
+MinimizeButton.addEventListener('click', OnClickMinimizeButton);
+MaximizeButton.addEventListener('click', OnClickMaximizeButton);
+CloseButton.addEventListener('click', OnClickCloseButton);
 
 
 // Configuration Variables
