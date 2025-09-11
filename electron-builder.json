@@ -1,0 +1,19 @@
+{
+    "appId": "com.BhushanKolhe.DualVideoPlayer",
+    "productName": "Dual Player",
+    "files": ["Resources","src","app.js"],
+    "icon": "./Resources/Icons/Logo.png",
+    "directories": {
+        "output": "Build"
+    },
+    "win": {
+        "target" : "nsis"
+    },
+    "publish": [
+        {
+            "provider": "github",
+            "releaseType": "release",
+            "owner": "Bhushan-Kolhe"
+        }
+    ]
+}

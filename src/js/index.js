@@ -847,3 +847,59 @@ const SecondVideoVolumeDown = () =>
     SecondVideo.volume = Math.max(0, SecondVideo.volume - 0.1);
     SecondVideoVolumeInput.value = SecondVideo.volume * 100;
 }
+
+// Auto Updater
+const UpdatePanel = document.getElementById("UpdatePanel");
+const UpdateMessage = document.querySelector("#UpdateBody p");
+const CancelUpdateButton = document.getElementById("CancelUpdateButton");
+const UpdateButton = document.getElementById("UpdateButton");
+
+
+const UpdateAvailableCallback = (event, updateEvent) =>
+{
+    UpdatePanel.classList.remove("Hide");
+    UpdateMessage.textContent = "Version " + updateEvent.version + " is now available to download."
+}
+
+const UpdateNotAvailableCallback = (event, updateEvent) =>
+{
+    console.log("No updates available");
+}
+
+const UpdateDownloadedCallback = (event, updateEvent) =>
+{
+    console.log("update downloaded");
+}
+
+const UpdateErrorCallback = (event, updateEvent) =>
+{
+    console.log(updateEvent);
+}
+
+const DownloadProgressCallback = (event, updateEvent)=>
+{
+    UpdateMessage.textContent = "Downloading update..." + Math.floor(updateEvent.percent) + "% / 100% " + Math.floor(updateEvent.bytesPerSecond/1024) + " kbps ";
+}
+
+window.autoUpdater.UpdateAvailable(UpdateAvailableCallback);
+window.autoUpdater.UpdateNotAvailable(UpdateNotAvailableCallback);
+window.autoUpdater.UpdateDownloaded(UpdateDownloadedCallback);
+window.autoUpdater.DownloadProgress(DownloadProgressCallback);
+window.autoUpdater.Error(UpdateErrorCallback);
+
+const OnClickUpdateButton = () =>
+{
+    window.autoUpdater.InstallUpdate();
+    UpdateButton.classList.add("Hide");
+    CancelUpdateButton.classList.add("Hide");
+    UpdateMessage.textContent = "Downloading update...";
+
+}
+
+const OnClickCancleUpdateButton = () =>
+{
+    UpdatePanel.classList.add("Hide");
+}
+
+UpdateButton.addEventListener('click', OnClickUpdateButton);
+CancelUpdateButton.addEventListener('click', OnClickCancleUpdateButton);

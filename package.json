@@ -2,14 +2,20 @@
   "name": "dualvideoplayer",
   "version": "1.0.0",
   "description": "Play two videos at once",
-  "main": "app.js",
+  "main": "./app.js",
   "scripts": {
     "start": "electron .",
-    "test": "test"
+    "test": "test",
+    "build": "electron-builder --win --x64"
   },
   "author": "Bhushan Kolhe",
   "license": "ISC",
+  "repository": "https://github.com/Bhushan-Kolhe/DualVideoPlayer",
   "devDependencies": {
-    "electron": "^38.0.0"
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
   }
 }
