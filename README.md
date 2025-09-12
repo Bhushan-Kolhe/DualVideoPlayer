@@ -34,3 +34,6 @@ Open source app for watching two videos at once. provides easy way to control bo
 | <strong> &darr;                   </strong>  | Volume up in primary video             |
 | <strong> alt + &darr;             </strong>  | Volume up in primarsecondary video     |
 | <strong> shift +&darr;            </strong>  | Volume up in both videos               |
+| <strong> w                        </strong>  | Stop playing first video               |
+| <strong> alt + w                  </strong>  | Stop playing second video              |
+| <strong> alt + n                  </strong>  | Re-enable second video player          |
