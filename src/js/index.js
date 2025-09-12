@@ -264,19 +264,7 @@ const OnClickFirstVideoControlsPlayButton = () =>
 
 const OnClickFirstVideoControlsStopButton = () =>
 {
-    IsFirstVideoPlaying = false;
-    IsFirstVideoLoaded = false;
-
-    FirstVideo.setAttribute('src','');
-    FirstVideoLoadButton.classList.remove("Hide");
-    FirstPlayButton.classList.add("Hide");
-
-    FirstPlayButtonIcon.setAttribute('src', PlayIcon);
-    FirstVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
-    FirstVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
-    FirstVideoProgressInput.max = 0;
-    FirstVideoProgressInput.value = 0;
-    FirstVideoVolumeInput.value = 100;
+    StopPlayingFirstVideo();
 }
 
 const OnClickFirstVideoControlsVolumeButton = () => 
@@ -322,6 +310,23 @@ const TogglePlayFirstVideo = () =>
     {
         PlayFirstVideo();
     }
+}
+
+const StopPlayingFirstVideo = () =>
+{
+    IsFirstVideoPlaying = false;
+    IsFirstVideoLoaded = false;
+
+    FirstVideo.setAttribute('src','');
+    FirstVideoLoadButton.classList.remove("Hide");
+    FirstPlayButton.classList.add("Hide");
+
+    FirstPlayButtonIcon.setAttribute('src', PlayIcon);
+    FirstVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
+    FirstVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+    FirstVideoProgressInput.max = 0;
+    FirstVideoProgressInput.value = 0;
+    FirstVideoVolumeInput.value = 100;
 }
 
 const ToggleMuteFirstVideo = () =>
@@ -455,18 +460,7 @@ const OnClickSecondVideoControlsPlayButton = () =>
 
 const OnClickSecondVideoControlsStopButton = () =>
 {
-    IsSecondVideoPlaying = false;
-    IsSecondVideoLoaded - false;
-    SecondVideo.setAttribute('src','');
-    SecondVideoLoadButton.classList.remove("Hide");
-    SecondPlayButton.classList.add("Hide");
-
-    SecondPlayButtonIcon.setAttribute('src', PlayIcon);
-    SecondVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
-    SecondVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
-    SecondVideoProgressInput.max = 0;
-    SecondVideoProgressInput.value = 0;
-    SecondVideoVolumeInput.value = 100;
+    StopPlayingSecondVideo();
 }
 
 const OnClickSecondVideoControlsVolumeButton = () => 
@@ -512,6 +506,22 @@ const TogglePlaySecondVideo = () =>
     {
         PlaySecondVideo();
     }
+}
+
+const StopPlayingSecondVideo = () =>
+{
+    IsSecondVideoPlaying = false;
+    IsSecondVideoLoaded - false;
+    SecondVideo.setAttribute('src','');
+    SecondVideoLoadButton.classList.remove("Hide");
+    SecondPlayButton.classList.add("Hide");
+
+    SecondPlayButtonIcon.setAttribute('src', PlayIcon);
+    SecondVideoControlsPlayButtonIcon.setAttribute('src', PlayIcon);
+    SecondVideoControlsVolumeButtonIcon.setAttribute('src', VolumeIcon)
+    SecondVideoProgressInput.max = 0;
+    SecondVideoProgressInput.value = 0;
+    SecondVideoVolumeInput.value = 100;
 }
 
 const ToggleMuteSecondVideo = () =>
@@ -734,6 +744,16 @@ const OnKeyDown = (keyEvent) =>
                 }
             }
             break;
+        case "w":
+            {
+                if(keyEvent.altKey)
+                {
+                    StopPlayingSecondVideo();
+                }else
+                {
+                    StopPlayingFirstVideo();
+                }
+            }
         
     }
 }
