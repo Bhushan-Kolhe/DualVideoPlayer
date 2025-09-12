@@ -42,6 +42,9 @@ const MinimizeButton = document.getElementById("MinimizeButton");
 const MaximizeButton = document.getElementById("MaximizeButton");
 const CloseButton = document.getElementById("CloseButton");
 
+const SecondVideoDragBar = document.getElementById("SecondVideoDragBar");
+const SecondVideoCloseButton = document.getElementById("SecondVideoCloseButton");
+
 
 // Titlebar Buttons
 let IsMaximized = false;
@@ -113,7 +116,7 @@ const ClampToRect = (parentRect, currentRect) =>
 const OnDrag = (dragEvent) => 
 {
     dragEvent.preventDefault();
-    SecondHeader.setPointerCapture(dragEvent.pointerId);
+    SecondVideoDragBar.setPointerCapture(dragEvent.pointerId);
 
     const startPosition = { x:dragEvent.clientX, y:dragEvent.clientY };
     const startRect = SecondVideoPlayer.getBoundingClientRect();
@@ -140,7 +143,7 @@ const OnDrag = (dragEvent) =>
 
     const OnMouseUp = (moveEvent) =>
     {
-        SecondHeader.releasePointerCapture(dragEvent.pointerId);
+        SecondVideoDragBar.releasePointerCapture(dragEvent.pointerId);
         window.removeEventListener('pointermove', OnMouseMove);
         window.removeEventListener('pointerup', OnMouseUp);
     }
@@ -149,7 +152,7 @@ const OnDrag = (dragEvent) =>
     window.addEventListener('pointerup', OnMouseUp);
 }
 
-SecondHeader.addEventListener('pointerdown', OnDrag);
+SecondVideoDragBar.addEventListener('pointerdown', OnDrag);
 
 // Resize Event
 
@@ -494,6 +497,12 @@ const OnSecondVideoVolumeInput = () =>
     SecondVideo.volume = SecondVideoVolumeInput.value/100;
 }
 
+const OnClickSecondVideoCloseButton = () =>
+{
+    StopPlayingSecondVideo();
+    SecondVideoPlayer.classList.add("Hide");
+}
+
 const TogglePlaySecondVideo = () => 
 {
     if(!IsSecondVideoLoaded) return;
@@ -603,6 +612,11 @@ const RestoreSecondVideo = () =>
     IsSecondVideoFullscreen = false;
 }
 
+const RestoreSecondVideoPlayer = () =>
+{
+    SecondVideoPlayer.classList.remove("Hide");
+}
+
 SecondVideoLoadButton.addEventListener('click', OnClickSecondVideoLoadButton);
 SecondPlayButton.addEventListener('click', OnClickSecondPlayButton);
 SecondVideo.addEventListener('click', PauseSecondVideo);
@@ -616,7 +630,7 @@ SecondVideo.addEventListener("loadedmetadata", OnSecondVideoMetaDataUpdate);
 SecondVideo.addEventListener("timeupdate", OnSecondVideoTimeUpdate);
 SecondVideoProgressInput.addEventListener("input", OnSecondVideoProgressInput);
 SecondVideoVolumeInput.addEventListener("input", OnSecondVideoVolumeInput);
-
+SecondVideoCloseButton.addEventListener("click", OnClickSecondVideoCloseButton);
 
 // Keybinds
 
@@ -752,6 +766,13 @@ const OnKeyDown = (keyEvent) =>
                 }else
                 {
                     StopPlayingFirstVideo();
+                }
+            }
+        case "n":
+            {
+                if(keyEvent.altKey)
+                {
+                    RestoreSecondVideoPlayer();
                 }
             }
         
