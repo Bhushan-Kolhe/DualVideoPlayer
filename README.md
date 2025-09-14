@@ -4,6 +4,12 @@
 
 Open source app for watching two videos at once. provides easy way to control both videos at once.
 
+## 📷 Screenshots
+<div style="text-align: center;">
+  <img src="./Screenshots/DualPlayerApp.png" height="400">
+  <img src="./Screenshots/DualPlayerApp2.png" height="400">
+</div>
+
 ## ⌨️ Keybinds
 
 | Keyboard shortcut | Function |
